@@ -294,7 +294,7 @@ class ECAPA_TDNN(nn.Module):
             )  # does not matter as long as batch is put back into the first dimension
             latent = latent.flatten(1, 2)
         out = self.ch_compression(latent)
-        out = self.final_norm(out.squeeze())
+        out = self.final_norm(out)
         # Finally, we project the output to the number of target classes
 
         return out
