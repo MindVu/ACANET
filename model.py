@@ -247,7 +247,7 @@ class ECAPA_TDNN(nn.Module):
 
         self.embed_reps = embed_reps
 
-    def forward(self, x, aug):
+    def forward(self, x, aug=True):
         with torch.no_grad():
             x = self.torchfbank(x) + 1e-6
             x = x.log()
