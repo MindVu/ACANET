@@ -295,7 +295,7 @@ class ECAPA_TDNN(nn.Module):
             latent = latent.flatten(1, 2)
         out = self.ch_compression(latent)
         out = self.final_norm(out.squeeze())
-        print(out.shape)
+        # print(out.shape)
         # Finally, we project the output to the number of target classes
 
         return out
