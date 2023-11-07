@@ -159,7 +159,7 @@ class ECAPA_TDNN(nn.Module):
         trnfr_layers=3,
         n_blocks=2,
         max_len=10000,
-        final_layer="1dE",
+        final_layer="fc",
     ):
         super(ECAPA_TDNN, self).__init__()
 
@@ -294,7 +294,8 @@ class ECAPA_TDNN(nn.Module):
             )  # does not matter as long as batch is put back into the first dimension
             latent = latent.flatten(1, 2)
         out = self.ch_compression(latent)
-        out = self.final_norm(out)
+        print(out.shape)
+        out = self.final_norm(out.squeeze()).unsqueeze(1)
         # Finally, we project the output to the number of target classes
 
         return out
