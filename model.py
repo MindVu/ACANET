@@ -235,13 +235,13 @@ class ECAPA_TDNN(nn.Module):
 
         if self.fl == "1dE":
             self.ch_compression = nn.Conv1d(embed_dim, 1, 1)
-            self.final_norm = BatchNorm1d(192)
+            self.final_norm = nn.BatchNorm1d(192)
         elif self.fl == "1dL":
             self.ch_compression = nn.Conv1d(latent_dim, 1, 1)
-            self.final_norm = BatchNorm1d(input_size=embed_dim)
+            self.final_norm = nn.BatchNorm1d(input_size=embed_dim)
         elif self.fl == "fc":
             self.ch_compression = nn.Linear(embed_dim * latent_dim, latent_dim)
-            self.final_norm = BatchNorm1d(192)
+            self.final_norm = nn.BatchNorm1d(192)
         else:
             raise Exception("invalid final layer configuration")
 
@@ -252,10 +252,10 @@ class ECAPA_TDNN(nn.Module):
             x = self.torchfbank(x) + 1e-6
             x = x.log()
             x = x - torch.mean(x, dim=-1, keepdim=True)
-            print(x.shape)
+            # print(x.shape)
             if aug == True:
                 x = self.specaug(x)
-                print(x.shape)
+                # print(x.shape)
         if len(x.shape) != 3:
             raise Exception("Check formatting of input")
 
@@ -296,9 +296,9 @@ class ECAPA_TDNN(nn.Module):
             )  # does not matter as long as batch is put back into the first dimension
             latent = latent.flatten(1, 2)
         out = self.ch_compression(latent)
-        if aug == False:
-            print(out.shape)
-            print(out)
+        # if aug == False:
+        #     print(out.shape)
+        #     print(out)
         out = self.final_norm(out.squeeze())
         # print(out.shape)
         # Finally, we project the output to the number of target classes
