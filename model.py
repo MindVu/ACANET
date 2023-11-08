@@ -260,7 +260,7 @@ class ECAPA_TDNN(nn.Module):
             raise Exception("Check formatting of input")
 
         # Expects x to be in BATCH FIRST format [Batch, Filters, Time]
-        x = x.permute(0, 1, 2)
+        x = x.permute(0, 2, 1)
         x = self.ch_expansion(x)  # perform channel expansion before anything else
 
         # First we expand our latent query matrix to size of batch
