@@ -235,13 +235,13 @@ class ECAPA_TDNN(nn.Module):
 
         if self.fl == "1dE":
             self.ch_compression = nn.Conv1d(embed_dim, 1, 1)
-            self.final_norm = BatchNorm1d(input_size=latent_dim)
+            self.final_norm = BatchNorm1d(192)
         elif self.fl == "1dL":
             self.ch_compression = nn.Conv1d(latent_dim, 1, 1)
             self.final_norm = BatchNorm1d(input_size=embed_dim)
         elif self.fl == "fc":
             self.ch_compression = nn.Linear(embed_dim * latent_dim, latent_dim)
-            self.final_norm = BatchNorm1d(input_size=latent_dim)
+            self.final_norm = BatchNorm1d(192)
         else:
             raise Exception("invalid final layer configuration")
 
