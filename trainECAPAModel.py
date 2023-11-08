@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser(description="ECAPA_trainer")
 ## Training Settings
 parser.add_argument('--num_frames', type=int,   default=200,     help='Duration of the input segments, eg: 200 for 2 second')
 parser.add_argument('--max_epoch',  type=int,   default=100,      help='Maximum number of epochs')
-parser.add_argument('--batch_size', type=int,   default=100,     help='Batch size')
+parser.add_argument('--batch_size', type=int,   default=1,     help='Batch size')
 parser.add_argument('--n_cpu',      type=int,   default=2,       help='Number of loader threads')
 parser.add_argument('--test_step',  type=int,   default=1,       help='Test and save every [test_step] epochs')
 parser.add_argument('--lr',         type=float, default=0.001,   help='Learning rate')
