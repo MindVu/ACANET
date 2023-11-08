@@ -295,11 +295,11 @@ class ECAPA_TDNN(nn.Module):
             latent = latent.flatten(1, 2)
         out = self.ch_compression(latent)
         out = self.final_norm(out.squeeze())
-        if aug == False:
-            out = out.unsqueeze(1)
         # print(out.shape)
         # Finally, we project the output to the number of target classes
-
+        if aug == False:
+            print(out.shape)
+            print(out)
         return out
         # x = self.conv1(x)
         # x = self.relu(x)
