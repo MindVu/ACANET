@@ -56,7 +56,7 @@ class ECAPAModel(nn.Module):
 		for idx, file in tqdm.tqdm(enumerate(setfiles), total = len(setfiles)):
 			audio, _  = soundfile.read(os.path.join(eval_path, file))
 			# Full utterance
-			data_1 = torch.FloatTensor(numpy.stack([audio],axis=0)).cuda()
+			data_1 = torch.FloatTensor(numpy.stack([audio, audio],axis=0)).cuda()
 
 			# Spliited utterance matrix
 			max_audio = 300 * 160 + 240
