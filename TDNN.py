@@ -18,7 +18,7 @@ class Conv1d(_Conv1d):
     """1D convolution. Skip transpose is used to improve efficiency."""
 
     def __init__(self, *args, **kwargs):
-        super().__init__(skip_transpose=False, *args, **kwargs)
+        super().__init__(skip_transpose=True, *args, **kwargs)
 
 
 class BatchNorm1d(_BatchNorm1d):
