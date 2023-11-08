@@ -252,8 +252,10 @@ class ECAPA_TDNN(nn.Module):
             x = self.torchfbank(x) + 1e-6
             x = x.log()
             x = x - torch.mean(x, dim=-1, keepdim=True)
+            print(x.shape)
             if aug == True:
                 x = self.specaug(x)
+                print(x.shape)
         if len(x.shape) != 3:
             raise Exception("Check formatting of input")
 
